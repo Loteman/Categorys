@@ -23,7 +23,7 @@
     --surface2: #262b36;
     --green:    #43b478;
     --red:      #e5534b;
-    --yellow:   #8b5cf6;
+    --accent:   #8b5cf6;
     --text:     #eef1f6;
     --text-dim: #9aa3b2;
     --border:   #333947;
@@ -58,7 +58,7 @@
     transition: transform .1s, filter .1s;
   }
   .header-btn:active { transform: scale(.94); filter: brightness(.85); }
-  .header-btn:hover, .header-btn:active { border-color: var(--yellow); }
+  .header-btn:hover, .header-btn:active { border-color: var(--accent); }
 
   .home-help-btn {
     position: fixed; top: 10px; left: 12px; z-index: 100;
@@ -68,7 +68,7 @@
     transition: filter .1s, border-color .15s, color .15s;
   }
   .home-help-btn:active { filter: brightness(.85); }
-  .home-help-btn:hover, .home-help-btn:active { border-color: var(--yellow); color: var(--yellow); }
+  .home-help-btn:hover, .home-help-btn:active { border-color: var(--accent); color: var(--accent); }
   .home-help-btn iconify-icon { font-size: 1.1rem; width: 1.1rem; height: 1.1rem; }
 
   /* ===== SCREEN SYSTEM ===== */
@@ -89,8 +89,8 @@
     cursor: pointer; transition: transform .12s, filter .12s; letter-spacing: 0.2px;
   }
   .btn:active { transform: scale(.96); filter: brightness(.88); }
-  .btn:hover, .btn:active { outline: 2px solid var(--yellow); outline-offset: 2px; }
-  .btn-primary { background: var(--yellow); color: #f8f5ff; }
+  .btn:hover, .btn:active { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn-primary { background: var(--accent); color: #f8f5ff; }
   .btn-green   { background: var(--green);  color: #06251a; }
   .btn-red     { background: var(--red);    color: #2c0908; }
   .btn-surface { background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); }
@@ -107,7 +107,7 @@
     font-family: 'Heebo', sans-serif; font-size: 1rem; font-weight: 600;
     outline: none; transition: border-color .2s; direction: rtl;
   }
-  input:focus { border-color: var(--yellow); }
+  input:focus { border-color: var(--accent); }
 
   .card {
     width: 100%; background: var(--surface); border: 1px solid var(--border);
@@ -121,7 +121,7 @@
     padding: 10px; border-radius: 9px; font-family: 'Heebo', sans-serif; font-weight: 700; font-size: .88rem;
     cursor: pointer; transition: background .15s, color .15s;
   }
-  .segmented button.active { background: var(--yellow); color: #f8f5ff; }
+  .segmented button.active { background: var(--accent); color: #f8f5ff; }
 
   /* ---- stepper ---- */
   .stepper { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border-radius: 12px; padding: 8px; }
@@ -136,7 +136,7 @@
     padding: 14px 16px; cursor: pointer; font-family: 'Heebo', sans-serif; color: var(--text);
     font-size: .92rem; font-weight: 700; transition: border-color .15s;
   }
-  .settings-toggle-header:hover, .settings-toggle-header:active { border-color: var(--yellow); }
+  .settings-toggle-header:hover, .settings-toggle-header:active { border-color: var(--accent); }
   .settings-toggle-header span { display: flex; align-items: center; gap: 7px; }
   .settings-chevron { transition: transform .25s ease; font-size: 1.2rem; width: 1.2rem; height: 1.2rem; color: var(--text-dim); }
   .settings-chevron.open { transform: rotate(180deg); }
@@ -149,7 +149,8 @@
   .logo-text {
     font-size: 3.1rem; font-weight: 900; letter-spacing: -2px; line-height: 1;
   }
-  .logo-sub { font-size: .95rem; color: var(--text-dim); line-height: 1.5; margin-top: 14px; padding: 0 6px; }
+  .logo-sub { font-size: .85rem; color: var(--text-dim); letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
+  .home-desc { font-size: .95rem; color: var(--text-dim); line-height: 1.6; margin-top: 14px; padding: 0 6px; }
 
   .home-footer { width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 24px 0 4px; }
   .footer-link {
@@ -163,7 +164,7 @@
   .footer-sep { color: var(--border); font-size: .9rem; user-select: none; }
 
   /* ===== SETUP ===== */
-  #screen-setup, #screen-warning, #screen-reveal, #screen-game, #screen-end {
+  #screen-settings, #screen-warning, #screen-reveal, #screen-game, #screen-end {
     padding: 20px 20px 44px; gap: 0; background: var(--bg); justify-content: flex-start;
   }
   .screen-title { font-size: 1.4rem; font-weight: 900; text-align: center; width: 100%; margin-bottom: 6px; }
@@ -181,10 +182,10 @@
   #screen-reveal { justify-content: center; background: radial-gradient(ellipse at 50% 30%, #1a1a2e 0%, var(--bg) 70%); }
   .category-reveal { text-align: center; }
   .category-reveal .eyebrow { color: var(--text-dim); font-size: .8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-  .category-reveal .cat-name { font-size: 1.8rem; font-weight: 900; margin-top: 10px; color: var(--yellow); line-height: 1.3; }
+  .category-reveal .cat-name { font-size: 1.8rem; font-weight: 900; margin-top: 10px; color: var(--accent); line-height: 1.3; }
   .reveal-icon-wrap { text-align: center; margin-bottom: 22px; animation: bounce 1.6s ease-in-out infinite; }
   @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  .reveal-icon-wrap iconify-icon { font-size: 3.4rem; color: var(--yellow); }
+  .reveal-icon-wrap iconify-icon { font-size: 3.4rem; color: var(--accent); }
 
   /* ===== GAME ===== */
   .cat-chip {
@@ -241,7 +242,7 @@
 
   .reveal-card { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; margin-bottom: 14px; }
   .reveal-card .label { font-size: .75rem; color: var(--text-dim); font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
-  .reveal-card .cat { font-size: 1.3rem; font-weight: 900; color: var(--yellow); margin-top: 6px; }
+  .reveal-card .cat { font-size: 1.3rem; font-weight: 900; color: var(--accent); margin-top: 6px; }
 
   /* ===== INFO BOTTOM SHEET ===== */
   #info-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 200; }
@@ -274,14 +275,14 @@
   .rules-section p { font-size: .95rem; color: var(--text); line-height: 1.65; }
   .rules-item { display: flex; gap: 12px; align-items: flex-start; background: var(--surface2); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
   .ri-text { font-size: .92rem; color: var(--text); line-height: 1.5; }
-  .ri-text strong { color: var(--yellow); }
+  .ri-text strong { color: var(--accent); }
   .about-link {
     display: flex; align-items: center; justify-content: space-between;
     background: var(--surface2); border: 1px solid var(--border);
     border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
     text-decoration: none; color: var(--text); transition: border-color .15s;
   }
-  .about-link:hover, .about-link:active { border-color: var(--yellow); }
+  .about-link:hover, .about-link:active { border-color: var(--accent); }
   .about-link-label { font-size: .95rem; font-weight: 700; }
   .about-link-sub   { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
   .about-tm { text-align: center; font-size: .78rem; color: var(--text-dim); margin-top: 18px; line-height: 1.6; }
@@ -319,13 +320,14 @@
 <div id="screen-home" class="screen active">
   <div class="logo">
     <div class="logo-text gradient-text">מה בקטגוריה?</div>
-    <div class="logo-sub">אומרים מילים בקול רם, שופט/ת אחת יודעת את הסוד,<br>וכולם מנסים לפצח מה מסתתר מאחורי הקטגוריה</div>
+    <div class="logo-sub">אומרים · מנחשים · מפצחים</div>
   </div>
+  <div class="home-desc">אומרים מילים בקול רם, שופט/ת אחת יודעת את הסוד,<br>וכולם מנסים לפצח מה מסתתר מאחורי הקטגוריה</div>
 
   <div style="height:26px"></div>
 
-  <button class="btn btn-primary" onclick="goToSetup()">
-    <iconify-icon icon="mdi:play"></iconify-icon> התחילו משחק!
+  <button class="btn btn-primary" onclick="goToSettings()">
+    <iconify-icon icon="mdi:play-circle-outline"></iconify-icon> התחילו משחק!
   </button>
 
   <div class="home-footer">
@@ -340,7 +342,7 @@
 </div>
 
 <!-- ===== SCREEN: SETUP ===== -->
-<div id="screen-setup" class="screen">
+<div id="screen-settings" class="screen">
   <div class="screen-title">הגדרת סבב</div>
   <div class="screen-sub">בחרו איך תיבחר הקטגוריה הסודית של הסבב הזה</div>
 
@@ -375,7 +377,7 @@
 
   <div style="flex:1"></div>
   <button class="btn btn-primary" onclick="confirmSetup()">
-    <iconify-icon icon="mdi:arrow-left"></iconify-icon> יאללה, משחקים!
+    <iconify-icon icon="mdi:arrow-left-circle-outline"></iconify-icon> יאללה, משחקים!
   </button>
 </div>
 
@@ -394,7 +396,7 @@
   <button class="btn btn-primary" onclick="showScreen('screen-reveal')">
     <iconify-icon icon="mdi:account-check-outline"></iconify-icon> אני השופט/ת, הראו לי
   </button>
-  <button class="btn btn-surface" style="margin-top:10px;" onclick="showScreen('screen-setup')">חזרה להגדרות</button>
+  <button class="btn btn-surface" style="margin-top:10px;" onclick="showScreen('screen-settings')">חזרה להגדרות</button>
 </div>
 
 <!-- ===== SCREEN: REVEAL ===== -->
@@ -528,9 +530,9 @@
       <iconify-icon icon="mdi:help-circle-outline"></iconify-icon> כללים</button>`;
   }
 
-  function goToSetup(){
+  function goToSettings(){
     setHeader(true, helpBtn());
-    showScreen('screen-setup');
+    showScreen('screen-settings');
   }
 
   function goHome(){
@@ -657,7 +659,7 @@
       screen.className = 'screen judge-wins';
       document.getElementById('endTitle').textContent = 'השופט/ת ניצח/ה!';
       document.getElementById('endSub').textContent = 'נכנסו ' + state.target + ' מילים מתאימות לפני שניחשתם נכון';
-      icon.setAttribute('icon','mdi:tag-outline'); icon.style.color = 'var(--yellow)';
+      icon.setAttribute('icon','mdi:tag-outline'); icon.style.color = 'var(--accent)';
     }
 
     const list = document.getElementById('endWordList');
@@ -678,7 +680,7 @@
 
   function playAgainSameSetup(){
     setHeader(true, helpBtn());
-    showScreen('screen-setup');
+    showScreen('screen-settings');
   }
 
   function launchConfetti(){
@@ -733,7 +735,7 @@
       '<div><div class="about-link-label"><iconify-icon icon="mdi:gamepad-variant-outline"></iconify-icon> Loteman Games</div>' +
       '<div class="about-link-sub">למשחקים נוספים — לחץ לביקור באתר</div></div>' +
       '<iconify-icon icon="mdi:open-in-new" style="font-size:1rem;color:var(--text-dim)"></iconify-icon></a>' +
-      '<div class="about-tm">מה בקטגוריה? © 2026<br>כל הזכויות שמורות ל-Loteman Games</div>'
+      '<div class="about-tm">מה בקטגוריה? © ' + new Date().getFullYear() + '<br>כל הזכויות שמורות ל-Loteman Games</div>'
   };
 
   function openInfo(type){
