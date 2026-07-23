@@ -18,17 +18,17 @@
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap');
 
   :root {
-    --bg:       #14161c;
-    --surface:  #1e222b;
-    --surface2: #262b36;
-    --green:    #43b478;
-    --red:      #e5534b;
+    --bg:       #0d0d14;
+    --surface:  #16161f;
+    --surface2: #1e1e2e;
+    --green:    #22c55e;
+    --red:      #ef4444;
     --accent:   #8b5cf6;
-    --text:     #eef1f6;
-    --text-dim: #9aa3b2;
-    --border:   #333947;
+    --text:     #f1f5f9;
+    --text-dim: #94a3b8;
+    --border:   #2d2d3d;
     --radius:   18px;
-    --radius-sm:11px;
+    --radius-sm:10px;
     --header-h: 52px;
   }
 
@@ -78,15 +78,15 @@
     overflow-y: auto; animation: fadeIn .22s ease;
   }
   .screen.active { display: flex; }
-  body.with-header .screen:not(#screen-home) { top: var(--header-h); }
+  .screen.has-header { padding-top: var(--header-h) !important; }
   @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
   /* ===== SHARED COMPONENTS ===== */
   .btn {
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    width: 100%; padding: 17px 22px; border: none; border-radius: var(--radius);
-    font-family: 'Heebo', sans-serif; font-size: 1.1rem; font-weight: 700;
-    cursor: pointer; transition: transform .12s, filter .12s; letter-spacing: 0.2px;
+    width: 100%; padding: 18px 24px; border: none; border-radius: var(--radius);
+    font-family: 'Heebo', sans-serif; font-size: 1.15rem; font-weight: 700;
+    cursor: pointer; transition: transform .12s, filter .12s; letter-spacing: 0.3px;
   }
   .btn:active { transform: scale(.96); filter: brightness(.88); }
   .btn:hover, .btn:active { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -342,7 +342,8 @@
 </div>
 
 <!-- ===== SCREEN: SETUP ===== -->
-<div id="screen-settings" class="screen">
+<div id="screen-settings" class="screen has-header">
+  <div style="height:20px"></div>
   <div class="screen-title">הגדרת סבב</div>
   <div class="screen-sub">בחרו איך תיבחר הקטגוריה הסודית של הסבב הזה</div>
 
@@ -356,7 +357,7 @@
     </div>
     <div id="customBlock" style="display:none;">
       <label for="customCatInput">מה הקטגוריה הסודית?</label>
-      <input type="text" id="customCatInput" placeholder="לדוגמה: דברים שיש בתיק גב">
+      <input type="text" id="customCatInput" maxlength="40" placeholder="לדוגמה: דברים שיש בתיק גב">
     </div>
   </div>
 
@@ -382,7 +383,7 @@
 </div>
 
 <!-- ===== SCREEN: WARNING ===== -->
-<div id="screen-warning" class="screen">
+<div id="screen-warning" class="screen has-header">
   <div style="flex:1"></div>
   <div class="warning-box">
     <iconify-icon icon="mdi:eye-off-outline"></iconify-icon>
@@ -400,7 +401,7 @@
 </div>
 
 <!-- ===== SCREEN: REVEAL ===== -->
-<div id="screen-reveal" class="screen">
+<div id="screen-reveal" class="screen has-header">
   <div style="flex:1"></div>
   <div class="reveal-icon-wrap"><iconify-icon icon="mdi:tag-outline"></iconify-icon></div>
   <div class="card category-reveal">
@@ -414,7 +415,8 @@
 </div>
 
 <!-- ===== SCREEN: GAME ===== -->
-<div id="screen-game" class="screen">
+<div id="screen-game" class="screen has-header">
+  <div style="height:20px"></div>
   <div class="cat-chip">
     <div>
       <div class="label">קטגוריה סודית</div>
@@ -433,7 +435,7 @@
   <div class="card">
     <label style="margin-top:0;">מה נאמר עכשיו? (השופט/ת מקליד/ה ומסמנ/ת)</label>
     <div class="word-input-row">
-      <input type="text" id="wordInput" placeholder="הקלידו את המילה שנאמרה" onkeydown="if(event.key==='Enter'){document.getElementById('fitBtn').click();}">
+      <input type="text" id="wordInput" maxlength="30" placeholder="הקלידו את המילה שנאמרה" onkeydown="if(event.key==='Enter'){document.getElementById('fitBtn').click();}">
     </div>
     <div class="btn-row">
       <button class="btn btn-green btn-sm" id="fitBtn" onclick="submitWord(true)">
@@ -468,7 +470,7 @@
 </div>
 
 <!-- ===== SCREEN: END ===== -->
-<div id="screen-end" class="screen">
+<div id="screen-end" class="screen has-header">
   <div class="confetti-area" id="confetti-area"></div>
   <iconify-icon class="end-icon" id="endIcon" icon="mdi:trophy"></iconify-icon>
   <div class="end-title" id="endTitle">כל הכבוד!</div>
@@ -523,7 +525,6 @@
     document.getElementById('page-header').style.display = visible ? 'flex' : 'none';
     document.getElementById('header-slot').innerHTML = slotHtml;
     document.getElementById('home-help-btn').style.display = visible ? 'none' : 'flex';
-    document.body.classList.toggle('with-header', visible);
   }
   function helpBtn(){
     return `<button class="header-btn" onclick="openInfo('rules')">
@@ -623,13 +624,15 @@
     }
   }
 
-  function escapeHtml(str){ const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+  function escapeHtml(str){
+    return (str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
 
   function submitWord(fits){
     const input = document.getElementById('wordInput');
     const val = input.value.trim();
     if(!val){ input.focus(); return; }
-    if(fits){ state.matched.push(val); } else { state.rejected.push(val); }
+    if(fits){ state.matched.push(val); vibrate([40,20,40]); } else { state.rejected.push(val); vibrate([80,30,80]); }
     input.value = ''; input.focus();
     renderDots(); renderWordList();
     if(state.matched.length >= state.target){ endGame(false); }
@@ -638,6 +641,7 @@
   function judgeVerdict(correct){
     if(correct){ endGame(true); }
     else {
+      vibrate(30);
       document.getElementById('guessBlock').classList.remove('open');
       document.getElementById('guessChevron').classList.remove('open');
     }
@@ -650,16 +654,18 @@
     const icon = document.getElementById('endIcon');
 
     if(guessersWon){
-      screen.className = 'screen guessers-win';
+      screen.className = 'screen has-header guessers-win';
       document.getElementById('endTitle').textContent = 'כל הכבוד, ניחשתם נכון!';
       document.getElementById('endSub').textContent = 'המנחשים ניצחו את הסבב הזה 🎉';
       icon.setAttribute('icon','mdi:trophy'); icon.style.color = 'var(--green)';
       launchConfetti();
+      vibrate([200,100,200,100,400]);
     } else {
-      screen.className = 'screen judge-wins';
+      screen.className = 'screen has-header judge-wins';
       document.getElementById('endTitle').textContent = 'השופט/ת ניצח/ה!';
       document.getElementById('endSub').textContent = 'נכנסו ' + state.target + ' מילים מתאימות לפני שניחשתם נכון';
       icon.setAttribute('icon','mdi:tag-outline'); icon.style.color = 'var(--accent)';
+      vibrate([500]);
     }
 
     const list = document.getElementById('endWordList');
@@ -704,6 +710,7 @@
   }
 
   function pickRandom(arr){ return arr[~~(Math.random() * arr.length)]; }
+  function vibrate(p) { try { navigator.vibrate && navigator.vibrate(p); } catch(e) {} }
 
   // ===== INFO BOTTOM SHEET =====
   const INFO_CONTENT = {
