@@ -277,3 +277,23 @@ iconify-icon { display: inline-flex; vertical-align: middle; flex-shrink: 0; }
   .about-link-label { font-size: .95rem; font-weight: 700; }
   .about-link-sub   { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
   .about-tm { text-align: center; font-size: .78rem; color: var(--text-dim); margin-top: 18px; line-height: 1.6; }
+
+  /* ===== FEATURED GAMES TILES (about tab) ===== */
+  .game-tiles {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+    width: 100%; margin-bottom: 4px;
+  }
+  .game-tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 16px 10px; text-decoration: none; cursor: pointer;
+    transition: transform .12s, border-color .15s, filter .12s;
+  }
+  .game-tile:active { transform: scale(.96); filter: brightness(.9); }
+  .game-tile:hover, .game-tile:active { border-color: var(--text-dim); }
+  .tile-emoji { font-size: 1.8rem; line-height: 1; }
+  .tile-name { font-size: .85rem; font-weight: 900; text-align: center; }
+  .tile-imposter .tile-name  { background: linear-gradient(90deg, #FF5733 0%, #C02B46 50%, #7D135B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .tile-alias .tile-name     { background: linear-gradient(135deg, #facc15 0%, #f97316 50%, #ef4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .tile-category .tile-name  { background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #22d3ee 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .tile-hirtotim .tile-name  { background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 55%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
