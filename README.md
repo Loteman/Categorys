@@ -1,6 +1,6 @@
 # Categorys
 What's in the category?
 
-[https://loteman.github.io/Categorys/](https://loteman.github.io/Categorys/)
+[https://categories.loteman.com/](https://categories.loteman.com/)
 
-Game By [LotemanGames](https://loteman.github.io/Loteman-Games/)
+Game By [LotemanGames](https://games.loteman.com/)
