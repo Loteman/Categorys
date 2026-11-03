@@ -12,14 +12,14 @@ const CATEGORIES = [
     "דברים שיש בעליית גג","דברים שיש בארון כלים"
   ];
 
-  const state = { mode:'random', category:'', target:4, matched:[], rejected:[], peeking:false };
+  const state = { mode:'random', category:'', target:4, matched:[], rejected:[], history:[], peeking:false };
   let currentScreen = 'screen-home';
 
   function showScreen(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     currentScreen = id;
-    window.scrollTo(0,0);
+    document.getElementById(id).scrollTop = 0;
   }
 
   function setHeader(visible, slotHtml=''){
@@ -38,7 +38,7 @@ const CATEGORIES = [
   }
 
   function goHome(){
-    if (!confirm('לחזור לדף הבית? המשחק הנוכחי יאופס.')) return;
+    if (currentScreen !== 'screen-end' && !confirm('לחזור לדף הבית? המשחק הנוכחי יאופס.')) return;
     setHeader(false);
     showScreen('screen-home');
   }
@@ -78,7 +78,7 @@ const CATEGORIES = [
   }
 
   function startGame(){
-    state.matched = []; state.rejected = []; state.peeking = false;
+    state.matched = []; state.rejected = []; state.history = []; state.peeking = false;
     document.getElementById('gameCatValue').textContent = state.category;
     document.getElementById('gameCatValue').classList.add('blurred');
     document.getElementById('peekIcon').setAttribute('icon','mdi:eye-outline');
@@ -110,7 +110,7 @@ const CATEGORIES = [
 
   function renderWordList(){
     const list = document.getElementById('wordList');
-    const all = [...state.matched.map(w=>({w, fit:true})), ...state.rejected.map(w=>({w, fit:false}))];
+    const all = state.history;
     if(all.length === 0){
       list.innerHTML = '<div class="empty-note">עוד לא נאמרו מילים בסבב הזה</div>';
       return;
@@ -131,8 +131,18 @@ const CATEGORIES = [
 
   function submitWord(fits){
     const input = document.getElementById('wordInput');
-    const val = input.value.trim();
+    const val = input.value.trim().replace(/\s+/g, ' ');
     if(!val){ input.focus(); return; }
+    if(state.history.some(item => item.w.toLowerCase() === val.toLowerCase())){
+      input.value = '';
+      input.placeholder = 'המילה הזו כבר נאמרה בסבב';
+      input.classList.add('input-error');
+      vibrate([60,30,60]);
+      setTimeout(() => { input.classList.remove('input-error'); input.placeholder = 'הקלידו את המילה שנאמרה'; }, 1800);
+      input.focus();
+      return;
+    }
+    state.history.push({ w: val, fit: fits });
     if(fits){ state.matched.push(val); vibrate([40,20,40]); } else { state.rejected.push(val); vibrate([80,30,80]); }
     input.value = ''; input.focus();
     renderDots(); renderWordList();
@@ -170,7 +180,7 @@ const CATEGORIES = [
     }
 
     const list = document.getElementById('endWordList');
-    const all = [...state.matched.map(w=>({w, fit:true})), ...state.rejected.map(w=>({w, fit:false}))];
+    const all = state.history;
     if(all.length === 0){
       list.innerHTML = '<div class="empty-note">לא נאמרו מילים בסבב הזה</div>';
     } else {
@@ -276,6 +286,7 @@ const CATEGORIES = [
     document.getElementById('info-sheet').classList.add('open');
   }
   function switchInfoTab(type){ openInfo(type); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfo(); });
   function closeInfo(){
     document.getElementById('info-backdrop').classList.remove('open');
     document.getElementById('info-sheet').classList.remove('open');
