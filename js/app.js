@@ -274,6 +274,10 @@ const CATEGORIES = [
       '<div><div class="about-link-label"><iconify-icon icon="mdi:gamepad-variant-outline"></iconify-icon> Loteman Games</div>' +
       '<div class="about-link-sub">למשחקים נוספים — לחץ לביקור באתר</div></div>' +
       '<iconify-icon icon="mdi:open-in-new" style="font-size:1rem;color:var(--text-dim)"></iconify-icon></a>' +
+      '<a class="about-link" href="/privacy" target="_blank" rel="noopener">' +
+      '<div><div class="about-link-label"><iconify-icon icon="mdi:shield-lock-outline"></iconify-icon> מדיניות פרטיות</div>' +
+      '<div class="about-link-sub">איזה מידע נאסף (כמעט אף אחד)</div></div>' +
+      '<iconify-icon icon="mdi:open-in-new" style="font-size:1rem;color:var(--text-dim)"></iconify-icon></a>' +
       '<div class="about-tm">מה בקטגוריה? © ' + new Date().getFullYear() + '<br>כל הזכויות שמורות ל-Loteman Games</div>' +
       '</div>'
   };
